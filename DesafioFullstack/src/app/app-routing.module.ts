@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../app/login/login.module').then((m) => m.LoginModule),
   },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./home/welcome/welcome.module').then((m) => m.WelcomeModule),
+  },
 
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
