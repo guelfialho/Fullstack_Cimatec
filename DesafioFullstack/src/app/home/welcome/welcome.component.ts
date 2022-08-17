@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/authorization/services/token.service';
 
 @Component({
   selector: 'app-welcome',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.css'],
 })
 export class WelcomeComponent implements OnInit {
-  constructor() {}
+  constructor(private tokenService: TokenService) {}
 
   ngOnInit(): void {}
 }

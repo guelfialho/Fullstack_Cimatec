@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../authorization/services/authentication.service';
 import { VehicledataService } from '../dashboard/services/vehicle-data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -10,6 +11,7 @@ import {
   distinctUntilChanged,
 } from 'rxjs/operators';
 import { VehicleService } from './services/vehicle.service';
+import { TokenService } from 'src/app/authorization/services/token.service';
 
 const ESPERA_DIGITACAO = 400;
 
@@ -21,40 +23,41 @@ const ESPERA_DIGITACAO = 400;
 export class DashboardComponent {
   veiculos: Veiculos = [];
   selecionado: Veiculo | undefined;
-  idSelecionado = 0;
+  idSelecionado = 1;
   testeInput = new FormControl();
 
   testes$ = this.testeInput.valueChanges.pipe(
     debounceTime(ESPERA_DIGITACAO),
-    // tap(() => {
-    //   console.log('Fluxo do Filtro');
-    // }),
-    // tap(console.log),
+
     filter(
-      (valorDigitado) => valorDigitado.length >= 5 || !valorDigitado.length
+      (valorDigitado) => valorDigitado.length >= 15 || !valorDigitado.length
     ),
     distinctUntilChanged(),
     switchMap((valorDigitado) =>
       this.vehicleDataService.getVehicleData(valorDigitado)
     )
-    // tap(console.log)
   );
 
   constructor(
     private vehicleService: VehicleService,
-    private vehicleDataService: VehicledataService
+    private vehicleDataService: VehicledataService,
+    private authService: TokenService
   ) {
     this.vehicleService.getVeiculos().subscribe((retornoAPI) => {
-      this.veiculos = retornoAPI.vehicles;
+      this.veiculos = retornoAPI;
       this.selecionado = this.veiculos[0];
     });
   }
 
   teste(e: any) {
-    this.selecionado = this.veiculos[e];
+    this.selecionado = this.veiculos[e.value - 1];
   }
 
   mudanca(valor: any) {
     console.log(valor);
+  }
+
+  retornaToken() {
+    return this.authService.getToken();
   }
 }

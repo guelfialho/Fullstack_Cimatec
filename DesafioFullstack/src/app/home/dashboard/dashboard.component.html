@@ -17,7 +17,7 @@
           (change)="teste($event.target)"
         >
           <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">
-            {{ veiculo.vehicle }}
+            {{ veiculo.model }}
           </option>
         </select>
       </div>
@@ -28,7 +28,7 @@
       p-title="TOTAL DE VENDAS"
     >
       <div class="po-font-subtitle" style="color: #2d96cd">
-        {{ selecionado?.volumetotal }}
+        {{ selecionado?.sold }}
       </div>
       <div class="" style="color: #2d96cd">Und.</div>
     </po-widget>
@@ -54,7 +54,7 @@
   <div style="width: 100%; text-align: center">
     <img
       *ngIf="selecionado"
-      src="../../assets/{{ selecionado.vehicle }}.png"
+      src="../../assets/{{ selecionado.model }}.png"
       style="width: 60%"
     />
   </div>
@@ -78,27 +78,27 @@
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 5 ? teste[0].odometer : " " }} KM
+              {{ testeInput.value.length > 12 ? teste[0].odometer : " " }} KM
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 5 ? teste[0].fuelLevel : " " }} %
+              {{ testeInput.value.length > 12 ? teste[0].fuelLevel : " " }} %
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 5 ? teste[0].status : " " }}
+              {{ testeInput.value.length > 12 ? teste[0].status : " " }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 5 ? teste[0].lat : " " }}
+              {{ testeInput.value.length > 12 ? teste[0].latitude : " " }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 5 ? teste[0].long : " " }}
+              {{ testeInput.value.length > 12 ? teste[0].longitude : " " }}
             </b>
           </td>
         </tr>

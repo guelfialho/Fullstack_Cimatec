@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'http://localhost:3000',
+  imagesPath: 'assets',
+  name: 'Desafio Fullstack',
 };

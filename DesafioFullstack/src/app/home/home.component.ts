@@ -1,15 +1,82 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  PoMenuItem,
+  PoToolbarAction,
+  PoToolbarProfile,
+} from '@po-ui/ng-components';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+// import { AuthorizationService } from '../authorization/authorization.service';
+import { User } from '../authorization/models/user';
+import { TokenService } from '../authorization/services/token.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  public logo: string;
+  public title: string;
+  public menu!: Array<PoMenuItem>;
+  public user!: User;
+  public profileActions: Array<PoToolbarAction> = [];
+  public profile: PoToolbarProfile = {
+    avatar: '',
+    title: '',
+  };
+  private subs = new Subscription();
 
-  constructor() { }
+  public name!: string;
 
-  ngOnInit(): void {
+  constructor(private router: Router, private tokenService: TokenService) {
+    this.title = environment.name;
+    this.logo = `../../${environment.imagesPath}/ford.png`;
   }
 
+  ngOnInit() {
+    this.setHomeInfo();
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+
+  private logout(): void {
+    // this.authService.logout();
+    this.router.navigate(['login']);
+  }
+
+  private setHomeInfo(): void {
+    // this.user = this.authService.getAuthenticatedUser();
+    this.profileActions.push({
+      label: 'Logout',
+      action: () => this.logout(),
+    });
+    this.menu = this.getMenus();
+    this.profile.title = this.user.name as string;
+  }
+
+  private getMenus(): Array<PoMenuItem> {
+    const menu: Array<PoMenuItem> = [
+      {
+        label: 'Home',
+        link: '/home/welcome',
+      },
+      {
+        label: 'Dashboard',
+        link: '/home/dashboard',
+      },
+    ];
+    return menu;
+  }
 }
