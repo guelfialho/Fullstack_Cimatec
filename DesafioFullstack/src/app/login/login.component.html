@@ -1,4 +1,4 @@
-<po-page-default>
+<!-- <po-page-default>
   <div class="po-sm-12 po-md-12 po-lg-12">
     <form class="" (ngSubmit)="login()" #loginForm="ngForm">
       <div class="form-group">
@@ -33,4 +33,12 @@
       </button>
     </form>
   </div>
-</po-page-default>
+</po-page-default> -->
+
+<po-page-login
+  (p-login-submit)="onloginSubmit($event)"
+  [p-loading]="isLoading"
+  [p-logo]="logo"
+  [p-secondary-logo]="secondaryLogo"
+>
+</po-page-login>
