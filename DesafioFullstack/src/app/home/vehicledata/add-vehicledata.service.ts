@@ -28,4 +28,20 @@ export class AddVehicledataService {
       )
       .pipe(tap((valor) => console.log(valor.status)));
   }
+
+  updateVehicleData(vehicledata: VehicleData) {
+    const token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders().append('x-access-token', token);
+
+    return this.httpClient
+      .put(
+        'http://localhost:3000/vehiclesdata',
+        {
+          ...vehicledata,
+        },
+        { observe: 'response', headers }
+      )
+      .pipe(tap((valor) => console.log(valor.status)));
+  }
 }
