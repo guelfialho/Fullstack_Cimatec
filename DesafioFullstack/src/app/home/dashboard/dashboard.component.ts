@@ -35,19 +35,18 @@ export class DashboardComponent implements OnInit {
   idSelecionado = 1;
   testeInput = new FormControl();
   vehiclesData: VehicleData[];
-  vehicleDataSelecionado: VehicleData;
+  vehicleDataSelecionado: VehicleData | undefined;
 
   testes$ = this.testeInput.valueChanges.pipe(
     debounceTime(ESPERA_DIGITACAO),
-    filter(
-      (valorDigitado) => valorDigitado.length >= 4 || !valorDigitado.length
-    ),
+    filter((valorDigitado) => valorDigitado.length >= 4),
     distinctUntilChanged(),
     switchMap(
       (valorDigitado) =>
         this.vehiclesData.filter((array) => array.vin.includes(valorDigitado))
       // this.vehicleDataService.getVehicleData(valorDigitado)
     ),
+    tap((value) => console.log(value)),
     tap((value) => (this.vehicleDataSelecionado = value))
   );
 
