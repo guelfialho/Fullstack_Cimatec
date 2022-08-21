@@ -16,7 +16,7 @@
           [(ngModel)]="idSelecionado"
           (change)="teste($event.target)"
         >
-          <option *ngFor="let veiculo of veiculos" [value]="veiculo.id">
+          <option *ngFor="let veiculo of veiculos" [value]="+veiculo.id">
             {{ veiculo.model }}
           </option>
         </select>
@@ -51,12 +51,31 @@
     </po-widget>
   </div>
 
-  <div style="width: 100%; text-align: center">
-    <img
-      *ngIf="selecionado"
-      src="../../assets/{{ selecionado.model }}.png"
-      style="width: 60%"
-    />
+  <div
+    class="mid-container"
+    style="
+      width: 100%;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    "
+  >
+    <div
+      class="po-sm-12 po-md-12 po-lg-8 po-mt-2"
+      style="width: 60%; display: flex"
+    >
+      <div id="donut_chart" style="width: 50%"></div>
+      <div id="donut_chart2" style="width: 50%"></div>
+    </div>
+
+    <div class="po-sm-12 po-md-12 po-lg-4 po-mt-2">
+      <img
+        *ngIf="selecionado"
+        src="../../assets/{{ selecionado.model }}.png"
+        style="width: 100%"
+      />
+    </div>
   </div>
 
   <div class="container-table" id="container-table" style="width: 100%">
@@ -76,29 +95,49 @@
           <td>
             <po-input p-label=" " [formControl]="testeInput"></po-input>
           </td>
-          <td *ngIf="testes$ | async as teste">
+          <td *ngIf="vehicleDataSelecionado">
             <b>
-              {{ testeInput.value.length > 12 ? teste[0].odometer : " " }} KM
+              {{
+                testeInput.value.length > 3
+                  ? vehicleDataSelecionado.odometer + " KM"
+                  : " "
+              }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 12 ? teste[0].fuelLevel : " " }} %
+              {{
+                testeInput.value.length > 3
+                  ? vehicleDataSelecionado.fuelLevel + " %"
+                  : " "
+              }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 12 ? teste[0].status : " " }}
+              {{
+                testeInput.value.length > 3
+                  ? vehicleDataSelecionado.status
+                  : " "
+              }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 12 ? teste[0].latitude : " " }}
+              {{
+                testeInput.value.length > 3
+                  ? vehicleDataSelecionado.latitude
+                  : " "
+              }}
             </b>
           </td>
           <td *ngIf="testes$ | async as teste">
             <b>
-              {{ testeInput.value.length > 12 ? teste[0].longitude : " " }}
+              {{
+                testeInput.value.length > 3
+                  ? vehicleDataSelecionado.longitude
+                  : " "
+              }}
             </b>
           </td>
         </tr>

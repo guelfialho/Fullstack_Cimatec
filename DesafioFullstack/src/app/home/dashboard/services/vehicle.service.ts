@@ -18,7 +18,9 @@ export class VehicleService {
 
     const headers = new HttpHeaders().append('x-access-token', token);
     return this.httpClient
-      .get<VeiculosAPI>('http://localhost:3000/vehicles', { headers })
+      .get<VeiculosAPI>('http://localhost:3000/vehicles', {
+        headers,
+      })
       .pipe(pluck('Vehicles'));
   }
 }
