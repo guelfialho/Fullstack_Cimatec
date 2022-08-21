@@ -13,6 +13,7 @@ import {
 import { VehicleService } from './services/vehicle.service';
 import { TokenService } from 'src/app/authorization/services/token.service';
 import { VehicleData } from './models/VehicleDataInterface';
+import { Router } from '@angular/router';
 
 const ESPERA_DIGITACAO = 400;
 declare var google: any;
@@ -53,7 +54,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private vehicleService: VehicleService,
     private vehicleDataService: VehicledataService,
-    private authService: TokenService
+    private authService: TokenService,
+    private router: Router
   ) {
     this.vehicleService.getVeiculos().subscribe((retornoAPI) => {
       this.veiculos = retornoAPI;
@@ -163,5 +165,9 @@ export class DashboardComponent implements OnInit {
 
   retornaToken() {
     return this.authService.getToken();
+  }
+
+  adicionaVD() {
+    this.router.navigate(['home/vehicledata/add']);
   }
 }

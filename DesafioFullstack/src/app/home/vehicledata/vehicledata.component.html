@@ -1,0 +1,109 @@
+<po-page-default>
+  <div class="po-sm-12 po-md-12 po-lg-12 container">
+    <div class="form-container">
+      <form class="" (ngSubmit)="addVehicleData()" #newVdForm="ngForm">
+        <div class="form-group">
+          <label for="vin">Vin:</label>
+          <input
+            class="form-control"
+            placeholder="Vin"
+            [(ngModel)]="vin"
+            name="vin"
+            #VinField="ngModel"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="odometer">Odometer:</label>
+          <input
+            class="form-control"
+            placeholder="Odometer"
+            [(ngModel)]="odometer"
+            name="odometer"
+            #OdometerField="ngModel"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tirePressure">TirePressure:</label>
+          <input
+            class="form-control"
+            placeholder="TirePressure"
+            [(ngModel)]="tirePressure"
+            name="tirePressure"
+            #TirePressureField="ngModel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <input
+            class="form-control"
+            placeholder="Status"
+            [(ngModel)]="status"
+            name="status"
+            #statusField="ngModel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="batteryStatus">BatteryStatus:</label>
+          <input
+            class="form-control"
+            placeholder="BatteryStatus"
+            [(ngModel)]="batteryStatus"
+            name="batteryStatus"
+            #batteryStatusField="ngModel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="fuelLevel">FuelLevel:</label>
+          <input
+            class="form-control"
+            placeholder="FuelLevel"
+            [(ngModel)]="fuelLevel"
+            name="fuelLevel"
+            #fuelLevelField="ngModel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="latitude">Latitude:</label>
+          <input
+            class="form-control"
+            placeholder="Latitude"
+            [(ngModel)]="latitude"
+            name="latitude"
+            #latitudeField="ngModel"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="longitude">Longitude:</label>
+          <input
+            class="form-control"
+            placeholder="Longitude"
+            [(ngModel)]="longitude"
+            name="longitude"
+            #longitudeField="ngModel"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          [disabled]="newVdForm.invalid"
+        >
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  </div>
+</po-page-default>

@@ -18,6 +18,13 @@ const routes: Routes = [
           import('./welcome/welcome.module').then((m) => m.WelcomeModule),
       },
       {
+        path: 'vehicledata/add',
+        loadChildren: () =>
+          import('./vehicledata/vehicledata.module').then(
+            (m) => m.VehicledataModule
+          ),
+      },
+      {
         path: '',
         redirectTo: 'welcome',
         pathMatch: 'full',
