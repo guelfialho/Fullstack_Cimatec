@@ -139,8 +139,8 @@ export class DashboardComponent implements OnInit {
   }
 
   teste(e: any) {
-    // let value = Math.trunc((e.value - 4) / 10);
-    // console.log(value, 'value');
+    let value = Math.trunc((e.value - 4) / 10);
+    console.log(value, 'value');
 
     this.selecionado = this.veiculos[e.value - 1];
     conectados = +this.selecionado.connected;
