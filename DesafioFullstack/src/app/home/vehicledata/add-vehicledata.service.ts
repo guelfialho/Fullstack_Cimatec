@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { VehicleData } from '../dashboard/models/VehicleDataInterface';
 import { tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class AddVehicledataService {
 
     return this.httpClient
       .post(
-        'http://localhost:3000/vehiclesdata',
+        `${environment.api}/vehiclesdata`,
         {
           ...vehicledata,
         },

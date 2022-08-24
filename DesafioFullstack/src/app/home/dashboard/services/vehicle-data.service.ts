@@ -1,7 +1,7 @@
 import { TokenService } from './../../../authorization/services/token.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { pluck, tap } from 'rxjs/operators';
+import { pluck } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({

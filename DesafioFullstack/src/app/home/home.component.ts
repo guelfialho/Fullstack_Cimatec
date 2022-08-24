@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   PoMenuItem,
@@ -13,8 +7,6 @@ import {
 } from '@po-ui/ng-components';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-// import { AuthorizationService } from '../authorization/authorization.service';
 import { User } from '../authorization/models/user';
 import { TokenService } from '../authorization/services/token.service';
 
@@ -52,18 +44,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private logout(): void {
-    // this.authService.logout();
     this.router.navigate(['login']);
   }
 
   private setHomeInfo(): void {
-    // this.user = this.authService.getAuthenticatedUser();
     this.profileActions.push({
       label: 'Logout',
       action: () => this.logout(),
     });
     this.menu = this.getMenus();
-    this.profile.title = this.user.name as string;
   }
 
   private getMenus(): Array<PoMenuItem> {

@@ -16,6 +16,7 @@ import { VehicleData } from './models/VehicleDataInterface';
 import { Router } from '@angular/router';
 
 const ESPERA_DIGITACAO = 400;
+
 declare var google: any;
 
 let conectados = 1;
@@ -60,6 +61,7 @@ export class DashboardComponent implements OnInit {
     this.vehicleService.getVeiculos().subscribe((retornoAPI) => {
       this.veiculos = retornoAPI;
       this.selecionado = this.veiculos[0];
+
       conectados = +this.selecionado.connected;
       notConectados = +this.selecionado.sold - +this.selecionado.connected;
       atualizados = +this.selecionado.softwareUpdates;
@@ -78,7 +80,6 @@ export class DashboardComponent implements OnInit {
 
     this.vehicleDataService.getVehicleData().subscribe((retornoAPI) => {
       this.vehiclesData = retornoAPI;
-      console.log(this.vehiclesData);
     });
   }
   ngOnInit(): void {}
@@ -139,8 +140,7 @@ export class DashboardComponent implements OnInit {
   }
 
   teste(e: any) {
-    let value = Math.trunc((e.value - 4) / 10);
-    console.log(value, 'value');
+    // let value = Math.trunc((e.value - 4) / 10);
 
     this.selecionado = this.veiculos[e.value - 1];
     conectados = +this.selecionado.connected;
